@@ -1,8 +1,16 @@
 [phases.setup]
-aptPkgs = ["libgl1-mesa-glx", "libglib2.0-0", "libgomp1"]
+aptPkgs = [
+    "libgl1-mesa-glx",
+    "libglib2.0-0",
+    "libgomp1",
+    "libsm6",
+    "libxext6",
+    "libxrender-dev",
+    "libgl1"
+]
 
 [phases.install]
 cmds = ["pip install -r requirements.txt"]
 
 [start]
-cmd = "gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 300"
+cmd = "gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 300 --preload"
