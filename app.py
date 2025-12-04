@@ -51,6 +51,7 @@ def upload_image():
     Unity가 기대하는 응답 형식: {"result": "텍스트", "confidence": 0.95}
     """
     try:
+        print(f"[{datetime.now()}] {request.method} {request.path}")
         # 파일 검증
         if 'file' not in request.files:
             return jsonify({"error": "파일이 없습니다."}), 400
@@ -262,4 +263,5 @@ def process_batch():
 if __name__ == '__main__':
     port = int(os.getenv("PORT", 5000))
     print(f"서버 시작: 0.0.0.0:{port}")
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(host='0.0.0.0', port=port, debug=True)
+
